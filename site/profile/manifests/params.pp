@@ -21,7 +21,7 @@ class profile::params {
       $r10k_config_file    = '/etc/puppetlabs/r10k/r10k.yaml'
     }
     default: {
-      $shell     = '/bin/zsh'
+      $shell     = '/bin/bash'
       $packages = [
         'vim-enhanced',
       ]

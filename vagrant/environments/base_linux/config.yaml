@@ -1,0 +1,93 @@
+---
+# This file is parsed by our Vagrantfile
+# Copy this to a new directory and symlink the common Vagrantfile into that directory to create a new Vagrant environment configuration.
+
+# Default settings for vms
+# These can be overridden by node in the 'nodes' section below.
+vm:
+  # The amount of memory in MB.
+  memory: 512
+  # The amount of CPUs
+  cpu: 1
+  # The Vagrant box to use. See the 'boxes' section below.
+  box: csas_centos6_bare
+  # Whether the DOI CA certificate should be installed for their SSL interception.
+  # This will install it to the system and into the Puppet agent's cert bundle.
+  add_doi_cert: true
+
+network:
+  range: 10.42.41.0/24
+  ip_start_offset: 101
+  # Some automation is built with the assumption that the domain will be 'vagrant' or the hostname will be prefixed with 'vagrant'.
+  # Please leave this as 'vagrant' unless there's a good reason to change it.
+  domain: vagrant
+
+# Vagrant settings
+vagrant:
+  # Update host's /etc/hosts if the 'hostmanager' Vagrant plugin is installed
+  hostmanager_enabled: false
+  hostmanager_manage_host: false
+  hostmanager_ignore_private_ip: false
+  hostmanager_include_offline: true
+
+# Default settings for Puppet on in this Vagrant environment
+# These can be overridden by node in the 'nodes' section below.
+puppet:
+  # Whether the Puppet agent should be installed or not. This will try to install from the CSASL master but will fallback to installing
+  # from Puppet's repositories.
+  install_puppet: true
+  # This sets the environment in trusted facts and external facts, if enabled
+  # If using puppet apply, as will be the most common case, this will symlink the control repo to this under the Puppet code directory.
+  # This should probably stay as 'production' for most cases, since that's Puppet's default environment.
+  # If running against a master, it may be desirable to change this.
+  environment: production
+  # This sets the pp_apptier in trusted facts and external facts, if enabled
+  apptier: vagrant
+  # Default puppet role for a system. Can be overridden by node.
+  # These will be set in an external fact and/or trusted fact if those settings are enabled below.
+  role: base_linux
+  # Will set the 'pp_application' trust fact or external fact, if enabled.
+  # Can be a comma-separated list. This currently has no impact on Puppet's run.
+  application: ''
+  # This will setup puppet on the instance for using 'puppet apply' by linking the control repository to puppet's code directory.
+  setup_puppet: true
+  # If puppet apply should be ran during provisioning. 'setup_puppet' must be true.
+  puppet_apply: false
+  # If using a puppet agent against a master, this will be the server to use
+  master_fqdn: 'puppet-csas.cr.usgs.gov'
+  # This will cause a puppet agent run against the master
+  puppet_agent: false
+  # This will create node facts under /etc/puppetlabs/facter/facts.d/ for role, env, and application
+  # set one of those keys under the node entry below.
+  facter_external_facts: false
+  # This will write out a csr_attributes.yaml file for trusted facts.
+  # Trusted facts are useless on masterless Puppet, though, since it's just "puppet apply" and there's no trust involved.
+  # A role, zone, env, datacenter, and application key can be set on a node under 'nodes' below.
+  facter_trusted_facts: false
+
+vbguest:
+  auto_update: true
+
+# Nodes for this vagrant environment
+# This is an Array of Hashes
+nodes:
+  centos6-base:
+    box: csas_centos6_base
+    puppet:
+      install_puppet: true
+      setup_puppet: true
+      run_puppet: false
+
+# Boxes that are to be utilized in this environment
+# The 'box' name for a node points to one of these entries that will list the 'full' box name
+# This can optionally list a 'box_url' for pointing at a 'box' json file for box metadata.
+boxes:
+  csas_centos6_bare:
+    box: csasl/csasl-centos-6-bare
+    box_url: 'https://vagrant.snafu.cr.usgs.gov/boxes/csasl-centos-6-bare/csasl-centos-6-bare.json'
+  csas_centos7_bare:
+    box: csasl/csasl-centos-7-bare
+    box_url: 'https://vagrant.snafu.cr.usgs.gov/boxes/csasl-centos-7-bare/csasl-centos-7-bare.json'
+  csas_centos6_base:
+    box: csasl/csasl-centos-6-base
+    box_url: 'https://vagrant.snafu.cr.usgs.gov/boxes/csasl-centos-6-base/csasl-centos-6-base.json'

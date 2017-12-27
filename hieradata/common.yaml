@@ -2,7 +2,7 @@
 # Letsencrypt
 # -------------------------------------------------------------------
 letsencrypt::version: 'v0.9.3'
-letsencrypt::email: 'ssl@signalboxes.net'
+letsencrypt::email: 'kevin@raney.co'
 letsencrypt::manage_install: true
 letsencrypt::manage_config: true
 letsencrypt::configure_epel: false

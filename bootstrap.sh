@@ -6,7 +6,7 @@ if [ $os == 'FreeBSD' ]; then
   /usr/sbin/pkg update
   /usr/sbin/pkg install -y puppet
 else
-  rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
+  rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
   yum install -y puppet-agent
   echo "Symlinking Puppet binaries to /usr/local/bin..."
   ln -s /opt/puppetlabs/bin/facter /usr/local/bin/facter

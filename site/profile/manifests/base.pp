@@ -48,26 +48,25 @@ class profile::base {
     timezone => 'MST',
   }
 
-  user { 'josh':
+  user { 'kevin':
     ensure     => 'present',
-    comment    => 'Josh Beard',
-    gid        => 'josh',
+    comment    => 'Kevin Raney',
+    gid        => 'kevin',
     groups     => ['wheel','web'],
-    home       => '/home/josh',
+    home       => '/home/kevin',
     managehome => true,
     shell      => $::profile::params::shell,
     uid        => '1000',
-    require    => Package['zsh'],
   }
 
-  group { 'josh':
+  group { 'kevin':
     ensure => 'present',
   }
 
-  file { '/home/josh/.ssh':
+  file { '/home/kevin/.ssh':
     ensure => 'directory',
-    owner  => 'josh',
-    group  => 'josh',
+    owner  => 'kevin',
+    group  => 'kevin',
     mode   => '0700',
   }
 
@@ -75,11 +74,11 @@ class profile::base {
     ensure => 'present',
   }
 
-  ssh_authorized_key { 'josh':
+  ssh_authorized_key { 'kevin':
     ensure => 'present',
-    name   => 'josh',
-    user   => 'josh',
+    name   => 'kevin',
+    user   => 'kevin',
     type   => 'ssh-rsa',
-    key    => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDPtIAa54bGh3ZvQkiy4OZ8iuUKJWsvctqc1yF5IlnhhbfzC50Bvl+oMALhH2n03hFmZm2LoRH2qSB1aebeNqL3Resf/9/IihYtFKkrTbaWQH6p2wai+dDj7VBHWhKOJztLZfGlDGogY7rxcFQBJZcdiLQvJPf8YCQReL5UbgJIeS4mV2xQjL6RriVsCKc6eg+PnROQ/rG85GdIhM6fmWrm4+Qu1lhq08i0BWqfLRnv5ZZ3XYsJoiz9QFwcEssbtgvmpAWYmcJorpEdkyQBpXfzGfI5NXaxalJ8An9awZyJzS1ROVeOXeJI6ZcRCgm51BQfzj77QA6Q82SUoCFfho+x',
+    key    => '',
   }
 }

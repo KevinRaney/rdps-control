@@ -25,7 +25,7 @@ block in log quick on $interface inet proto tcp from any to any flags FUP/FUP
 pass in on $interface proto icmp all
 
 # Allow SSH
-pass in quick on $interface proto tcp from any to any port 22431 keep state \
+pass in quick on $interface proto tcp from any to any port 22 keep state \
     (max-src-conn-rate 5/120, overload <bad_hosts> flush global)
 
 # Allow HTTP
