@@ -10,13 +10,13 @@ other means.
 
 ## Origin
 
-This code base was forked from joshbeard/vps-control and modified for use in the RDPS environment.
+This code base was forked from [joshbeard/vps-control](https://www.github.com/joshbeard/vps-control) and modified for use in the RDPS environment.
 
 ## Usage
 
 This isn't usable by other people without some modification, obviously.
 
-Once the new server is created (see [https://github.com/joshbeard/vps-packer](Packer template)), clone this repository to the server somewhere and run the `bootstrap` script.
+Once the new server is created (see [Packer template](https://github.com/joshbeard/vps-packer)), clone this repository to the server somewhere and run the `bootstrap` script.
 
 For example:
 
