@@ -10,7 +10,7 @@ vm:
   # The amount of CPUs
   cpu: 1
   # The Vagrant box to use. See the 'boxes' section below.
-  box: csas_centos6_bare
+  box: centos6_base
   # Whether the DOI CA certificate should be installed for their SSL interception.
   # This will install it to the system and into the Puppet agent's cert bundle.
   add_doi_cert: true
@@ -72,7 +72,7 @@ vbguest:
 # This is an Array of Hashes
 nodes:
   centos6-base:
-    box: csas_centos6_base
+    box: centos6_base
     puppet:
       install_puppet: true
       setup_puppet: true
@@ -88,6 +88,5 @@ boxes:
   csas_centos7_bare:
     box: csasl/csasl-centos-7-bare
     box_url: 'https://vagrant.snafu.cr.usgs.gov/boxes/csasl-centos-7-bare/csasl-centos-7-bare.json'
-  csas_centos6_base:
-    box: csasl/csasl-centos-6-base
-    box_url: 'https://vagrant.snafu.cr.usgs.gov/boxes/csasl-centos-6-base/csasl-centos-6-base.json'
+  centos6_base:
+    box: inviqa/centos-6-minimal

@@ -1,4 +1,4 @@
-# CSAS&L Vagrant Environments and Boxes
+# RDPS Vagrant Environments and Boxes
 
 From [Vagrant's website](https://www.vagrantup.com/intro/index.html):
 
@@ -7,85 +7,23 @@ From [Vagrant's website](https://www.vagrantup.com/intro/index.html):
     on automation, Vagrant lowers development environment setup time, increases production parity, and makes the "works on my machine"
     excuse a relic of the past.
 
-The CSAS&L IT Operations team is maintaining and providing pre-built Vagrant _boxes_ and _environments_ for use within the organization for
-development and testing. These should be considered the "official" CSAS&L Vagrant Boxes.
-
 A Vagrant _box_ is basically a system image. We maintain two "flavors" of boxes - _bare_ and _base_. A _bare_ box is a minimal install of
 an operating system with no provisioning done to it. A _base_ box is a minimal install that has been baseline provisioned by Puppet. The
 _base_ box will likely be the most commonly used, as it will significantly decrease the time it takes to provision a Vagrant instance.
 
-We've built our Vagrant boxes and environments to use the CSAS&L Puppet codebase for provisioning and managing the Vagrant instances.
-These boxes and environments can be used by both the CSAS&L ops team and development team.
-
-Our Vagrant boxes are hosted on an internal http repository with metadata provided as well, so they are versioned and easily maintainable
-to the end-user. They are built using [Packer](https://packer.io).
-
-Basically, we are providing virtual machines for development and testing that are built to closely resemble CSAS&L's servers.
+We've built our Vagrant boxes and environments to use the RDPS Puppet codebase for provisioning and managing the Vagrant instances.
+These boxes and environments can be used to test new changes.
 
 ## Prerequisites
 
-1. Read, understand, and agree to the Rules of Behavior for accessing the CSAS&L Ops Git repositories.
-1. Provide an SSH public key to the CSASL Ops team. You can make a [Service Desk request in Jira](https://my.usgs.gov/support/ops) for
-   this. This key will be used for providing access to the necessary ops git repositories.
-2. Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-3. Download and install [Vagrant](https://www.vagrantup.com)
-
-## Rules of Behavior
-
-!!! warning
-    You must understand and agree to follow these rules of behavior prior to being
-    granted access to the CSASL Operations Version Control Repositories and related
-    data.
-
-The code repositories and associated data contain sensitive and confidential
-information that describes the configuration state of CSASL systems and
-services.
-
-Upon being granted access to the code repositories and associated data, you will
-be held responsible for damage caused either through negligence or a willful
-act. Failure to follow these rules of behavior may result in legal action and/or
-disciplinary action up to and including termination of employment.
-
-1. Always use a passphrase-enabled SSH key pair and provide the public key to
-   the CSASL Operations team to gain access to code repositories and associated
-   data. __Sending your key to the Operations team indicates that you fully
-   understand and will comply with these rules of behavior.__
-
-2. The SSH key pair, and all code or data obtained via these repositories, will
-   only be stored and used on Government-Furnished Equipment (GFE) that adhere
-   to DOI/USGS policy for access and data storage.
-
-3. The SSH private key, code, and data from these repositories should never be
-   transmitted to any other device or system, including virtual machines, thumb
-   drives, or portable storage.
-
-4. Additional devices that will be used for access should use a unique SSH
-   key pair; do not use the same key on multiple systems.
-
-5. CSASL Operations Data should never be transmitted to portable or external
-   storage devices. It should only ever be stored on the internal storage of
-   a Government-Furnished device, or backed up to an __encrypted__ Government
-   owned backup drive.
-
-6. Code and associated data will only be stored and used on Government-Furnished
-   Equipment (GFE) that adhere to DOI/USGS policy for access and data storage.
-
-7. Code and associated data, complete or partial, will not be shared
-   with anyone else, including other members of the CSASL team. Only the
-   CSASL Operations team has the authority to grant access to the code and
-   associated data.
-
-Potential changes to this Rules Of Behavior will be made via pull requests to
-the Git repository.  Users with access to CSASL Ops code and data will be
-notified of any future changes.
+1. Download and install [VirtualBox 5.1.30](http://download.virtualbox.org/virtualbox/5.1.30/VirtualBox-5.1.30-118389-OSX.dmg)
+2. Download and install [Vagrant](https://www.vagrantup.com)
 
 ## Getting Started
 
-NOTE: You must be connected to the USGS network in order for the Vagrant environments to function.
+1. Clone the [Puppet Control repository](https://www.github.com/KevinRaney/vps-control)
 
-1. Clone the [Puppet Control repository](https://bitbucket.snafu.cr.usgs.gov/projects/PUP/repos/control/browse)
-
-        git clone ssh://git@bitbucket.snafu.cr.usgs.gov:7999/pup/control.git
+        git clone git@github.com:KevinRaney/vps-control.git
 
 2. Install dependencies
 
@@ -188,7 +126,7 @@ changes of the environment.
 To copy an exisitng environment and maintain the `VagrantFile` symlink, use the following command:
 
 ```
-cd vagrant/environments 
+cd vagrant/environments
 cp -a base_linux new_env
 ```
 
