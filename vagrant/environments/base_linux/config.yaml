@@ -76,7 +76,7 @@ nodes:
     puppet:
       install_puppet: true
       setup_puppet: true
-      run_puppet: false
+      puppet_apply: false
 
 # Boxes that are to be utilized in this environment
 # The 'box' name for a node points to one of these entries that will list the 'full' box name

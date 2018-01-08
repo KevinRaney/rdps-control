@@ -1,0 +1,8 @@
+classes:
+  - 'profile::base'
+  - 'profile::base::linux'
+  - 'profile::firewall'
+  - 'profile::ssh'
+  - 'profile::sudoers'
+  - 'profile::puppet'
+  - 'profile::letsencrypt'

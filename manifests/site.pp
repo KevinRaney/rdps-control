@@ -11,9 +11,3 @@ Package {
   allow_virtual => true,
   provider      => $package_provider,
 }
-
-Vcsrepo {
-  provider => 'git',
-}
-
-hiera_include('classes')

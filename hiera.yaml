@@ -1,0 +1,26 @@
+---
+#
+# Hiera 5 configuration file
+#
+# https://docs.puppet.com/puppet/5.1/hiera_config_yaml_5.html
+#
+# Note: Be aware that using trusted facts in the hierarchy will not work for Vagrant (puppet apply).
+#
+version: 5
+
+defaults:
+  datadir: data
+
+hierarchy:
+  - name: "Node-specific data"
+    paths:
+      - "host/%{facts.hostname_lower}.yaml"
+
+  - name: "Role data"
+    paths:
+      - "role/%{::role}.yaml"
+
+  # We have a number of 'common' fallback files to help organize data.
+  - name: "Common data"
+    paths:
+      - 'common.yaml'
