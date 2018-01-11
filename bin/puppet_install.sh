@@ -8,7 +8,6 @@
 # want that to happen by default, so we blank out the server. If we need to test against a master, we just need to set the server setting.
 # That may also cause cert name collisions, since the names of Vagrant instances may be duplicate. This is likely a rare scenario and one
 # that is trivial to overcome if needed. The master automatically cleans up after stale vagrant hosts.
-PUPPET_MASTER="puppet-csas.cr.usgs.gov"
 
 breed=$1
 
@@ -119,7 +118,6 @@ setup_bsd() {
 setup_windows() {
   curl -s -o puppet-agent.msi "https://downloads.puppetlabs.com/windows/puppet-agent-x64-latest.msi"
   msiexec /qn /norestart /i puppet-agent.msi
-  # msiexec /qn /norestart /i puppet-agent.msi PUPPET_AGENT_CERTNAME=me.example.com PUPPET_MASTER_SERVER=puppet.example.com \
 }
 setup_linux() {
   ARCH=$(uname -m | sed 's/x86_//;s/i[3-6]86/32/')
@@ -187,21 +185,11 @@ if [[ -L "$env_dir" && -d "$env_dir" ]]; then
   rm -f "$env_dir"
 fi
 
-echo "==> Querying ${PUPPET_MASTER}..."
-curl -f -k -I https://${PUPPET_MASTER}:8140/packages/current/install.bash
-_CURL_RESULT=$?
-echo "========================================================================"
-
-if [ $_CURL_RESULT -eq 0 ]; then
-  echo "==> Puppet master ${PUPPET_MASTER} is reachable"
-  echo "==> Will attempt to fetch installer from ${PUPPET_MASTER}"
-  curl -k https://${PUPPET_MASTER}:8140/packages/current/install.bash | bash -s main:server=""
+if [ "x$breed" != "x" ]; then
+  setup_$breed
 else
-  if [ "x$breed" != "x" ]; then
-    setup_$breed
-  else
-    os_detect
-  fi
+  os_detect
 fi
+
 [ -e /usr/bin/puppet ] || ln -fs /opt/puppetlabs/puppet/bin/puppet /usr/bin/puppet
 [ -e /usr/bin/facter ] || ln -fs /opt/puppetlabs/puppet/bin/facter /usr/bin/facter

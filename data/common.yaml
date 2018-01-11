@@ -7,3 +7,5 @@ letsencrypt::manage_install: true
 letsencrypt::manage_config: true
 letsencrypt::configure_epel: false
 letsencrypt::manage_dependencies: false
+
+noop_mode: false
