@@ -1,0 +1,48 @@
+classes:
+  - 'profile::base'
+  - 'profile::base::linux'
+  - 'profile::firewall'
+  - 'profile::ssh'
+  - 'profile::sudoers'
+  - 'profile::puppet'
+#  - 'profile::letsencrypt'
+
+##
+## Nginx vhosts
+##
+  'kristinefreed.com_http':
+    server_name: ['kristinefreed.com', 'www.kristinefreed.com']
+    www_root: "/var/www/sites/kristinefreed"
+    location_cfg_append:
+      'return': '301 https://$server_name$request_uri'
+
+  'kristinefreed.com':
+    server_name: ['kristinefreed.com', 'www.kristinefreed.com']
+    use_default_location: false
+    listen_port: '443'
+    ssl: true
+    ssl_cert: '/etc/letsencrypt/live/kristinefreed.com/fullchain.pem'
+    ssl_key: '/etc/letsencrypt/live/kristinefreed.com/privkey.pem'
+    ssl_ciphers: 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH'
+    www_root: "/var/www/sites/kristinefreed"
+    access_log: "/var/log/nginx/kristinefreed.com_ssl_access.log"
+    error_log: "/var/log/nginx/kristinefreed.com_ssl_error.log"
+
+nginx::nginx_locations:
+  'kristinefreed-well-known':
+    location: '/.well-known'
+    vhost: 'kristinefreed.com_http'
+    www_root: '/var/www/le_webroot/kristinefreed.com'
+
+# -------------------------------------------------------------------
+# Letsencrypt
+# -------------------------------------------------------------------
+profile::letsencrypt::certonly_defaults:
+  plugin: 'webroot'
+  manage_cron: true
+  cron_success_command: '/sbin/service nginx restart'
+
+profile::letsencrypt::domains:
+  'kristinefreed.com':
+    'webroot_paths':
+      - '/var/www/le_webroot/kristinefreed.com'
