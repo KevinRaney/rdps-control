@@ -10,6 +10,7 @@ classes:
 ##
 ## Nginx vhosts
 ##
+nginx::nginx_servers:
   'kristinefreed.com_http':
     server_name: ['kristinefreed.com', 'www.kristinefreed.com']
     www_root: "/var/www/sites/kristinefreed"
