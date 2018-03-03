@@ -74,11 +74,11 @@ class profile::base {
     ensure => 'present',
   }
 
-  ssh_authorized_key { 'kevin':
+  ssh_authorized_key { 'kevin-iMac4k':
     ensure => 'present',
     name   => 'kevin',
     user   => 'kevin',
     type   => 'ssh-rsa',
-    key    => '',
+    key    => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQDlAAMXIwRLhnURnvIsjXkV5AawVgUR4yavk3Q6v008zgAiGiL7CTldpDNg9cwwaRT74kQmeEhYCfg3ZdHXcYL4RciAftvb/mS9rLXpEjCkIj//+h/J4L8kEBfrQt3cYr/fZsKUxj0taZNdWbLunnBJhDwpi707t1Fd6C5fcCA7VJvNHF8ewTQtdOYasgvNZVeA1/LWvLJKKZNbM2LA8ozq3/ZUjMmax1xCI3bpy9luybbQv7zqalWWBNue45LZXzFybm5MYik/lDAyk0zSEksKOaolYRW93I4L772WYcuFilzwvYvjLv01/L9MirLaMo5dfnDO6n99itbEEEKyL5WgCFXrzFICZzf5uy3MWBCcyR+wXboaPdzEUKtq0wyr+yhQi1gsyawSgvOdaWmDhVkAzPAFNawI+on0qTbgIKlPuCuOXwKnRXFnObjblZWDWdwGpv9SxutErrqVQtcWf+tRU3sWR9xuWFCfrCP7Mnvd3Xu48c6o3TFZIvNJWwzuJugJkZViYXFTHU9opBXmaLEGEFMFgGz7C+C1t+f6TtM/I+kGuiFWvdBqKaxHWnfUaqQLWu47WyhD0kiNlFCrt7dqVJ3QgdT4tt+LqNEzmHnWgDvE5mmshXrcokexmnlKTNlor6ABUOC4aGHtwQ0cplbMTNiWAEtUFk6Pyk+qOnGX2Q==',
   }
 }
