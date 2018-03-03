@@ -1,22 +1,20 @@
 ##
 ## Profile for configuring the Puppet agent and master on the vps
 ##
-class profile::puppet inherits profile::params {
+class profile::puppet {
+
+  include profile::params
 
   ## Static entry in /etc/hosts
-  host { $::fqdn:
+  host { $facts['fqdn']:
     ensure => 'present',
-    ip     => $::ipaddress,
-  }
-
-  file { [ '/etc/puppetlabs', '/etc/puppetlabs/r10k' ]:
-    ensure => 'directory',
+    ip     => $facts['ipaddress'],
   }
 
   ## Configure r10k
   class { 'r10k':
-    version       => 'latest',
-    sources       => {
+    version     => 'latest',
+    sources     => {
       'control'   => {
         'remote'  => 'https://github.com/kevinraney/rdps-control.git',
         'basedir' => $::settings::environmentpath,
@@ -25,19 +23,7 @@ class profile::puppet inherits profile::params {
     },
     mcollective => false,
     configfile  => $::profile::params::r10k_config_file,
-  }
-
-  ## Configure Hiera
-  class { 'hiera':
-    hierarchy => [
-      '%{clientcert}',
-      '%{environment}',
-      'common',
-    ],
-    datadir    => "${::settings::environmentpath}/%{environment}/hieradata",
-    owner      => 'root',
-    group      => '0',
-    hiera_yaml => $::profile::params::hiera_yaml,
+    root_group  => $::profile::params::root_group,
   }
 
   cron { 'puppet':
@@ -51,11 +37,13 @@ class profile::puppet inherits profile::params {
   if $::osfamily == 'FreeBSD' {
     file { '/var/log/puppet':
       ensure => 'directory',
+      owner  => 'puppet',
+      group  => 'puppet',
     }
 
     file { '/etc/newsyslog.conf.d/puppet.conf':
       ensure  => 'file',
-      content => '/var/log/puppet/puppet.log puppet:puppet   644     30      *       $D0   JGCN',
+      content => '/var/log/puppet/puppet.log  puppet:puppet  644     30      *       $D0   JGCN',
       mode    => '0640',
     }
 

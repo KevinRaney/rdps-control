@@ -43,9 +43,9 @@ Package {
   provider => $pkg_provider,
 }
 
-#  Vcsrepo {
-#   provider => 'git',
-# }
+Vcsrepo {
+  provider => 'git',
+}
 
 
 # DEFAULT NODE
