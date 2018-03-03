@@ -16,7 +16,7 @@ This code base was forked from [joshbeard/vps-control](https://www.github.com/jo
 
 This isn't usable by other people without some modification, obviously.
 
-Once the new server is created (see [Packer template](https://github.com/joshbeard/vps-packer)), clone this repository to the server somewhere and run the `bootstrap` script.
+Clone the repo and run the bootstrap script to install puppet & r10k.
 
 For example:
 
@@ -27,11 +27,7 @@ cd control
 bash bootstrap.sh
 ```
 
-This will install r10k, populate a temporary modules directory, and run a
-`puppet apply` with the `role::vps` class.
-
-Once that's ran, r10k will need to be ran to populate the Puppet environments:
-`r10k deploy environment -pv`
+After the server is bootstraped, it will run a `puppet apply` to apple the base profile or a host specific role if it matches the hostname.
 
 ## Disclaimer
 
