@@ -15,7 +15,7 @@ defaults:
 hierarchy:
   - name: "Node-specific data"
     paths:
-      - "host/%{facts.hostname_lower}.yaml"
+      - "host/%{facts.hostname}.yaml"
   - name: "Common data"
     paths:
       - 'common.yaml'
