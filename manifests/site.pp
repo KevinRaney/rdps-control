@@ -53,9 +53,6 @@ filebucket { 'main':
   path   => false,
 }
 
-# Make filebucket 'main' the default backup location for all File resources:
-File { backup => 'main' }
-
 # DEFAULT NODE
 node default { }
 
