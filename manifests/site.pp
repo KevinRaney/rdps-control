@@ -47,7 +47,7 @@ Vcsrepo {
   provider => 'git',
 }
 
-# Define filebucket 'main':
+# TODO This needs fixing and to be local
 filebucket { 'main':
   server => 'puppet.local',
   path   => false,
