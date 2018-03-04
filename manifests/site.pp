@@ -47,6 +47,14 @@ Vcsrepo {
   provider => 'git',
 }
 
+# Define filebucket 'main':
+filebucket { 'main':
+  server => 'puppet.local',
+  path   => false,
+}
+
+# Make filebucket 'main' the default backup location for all File resources:
+File { backup => 'main' }
 
 # DEFAULT NODE
 node default { }

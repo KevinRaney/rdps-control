@@ -4,8 +4,6 @@
 #
 # https://docs.puppet.com/puppet/5.1/hiera_config_yaml_5.html
 #
-# Note: Be aware that using trusted facts in the hierarchy will not work for Vagrant (puppet apply).
-#
 version: 5
 
 defaults:
