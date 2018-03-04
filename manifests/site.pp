@@ -47,17 +47,8 @@ Vcsrepo {
   provider => 'git',
 }
 
-file { '/var/lib/puppet/clientbucket/':
-  ensure   => 'directory',
-  group    => 'root',
-  mode     => '0700',
-  owner    => 'root',
-  type     => 'directory',
-}
-
 filebucket { 'main':
   path   => '/var/lib/puppet/clientbucket/',
-  require => File['/var/lib/puppet/clientbucket/'],
 }
 
 # DEFAULT NODE
