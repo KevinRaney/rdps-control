@@ -18,12 +18,22 @@ This isn't usable by other people without some modification, obviously.
 
 Clone the repo and run the bootstrap script to install puppet & r10k.
 
-For example:
+Production example:
 
 ```shell
 cd
-git clone https://github.com/kevinraney/vps-control.git control
+git clone https://github.com/kevinraney/rdps-control.git control
 cd control
+bash bootstrap.sh
+```
+
+Development example:
+
+```shell
+cd
+git clone https://github.com/kevinraney/rdps-control.git control
+cd control
+git checkout -b develop origin/develop
 bash bootstrap.sh
 ```
 

@@ -5,6 +5,7 @@ classes:
   - 'profile::ssh'
   - 'profile::sudoers'
   - 'profile::puppet'
+  - 'profile::nginx_server'
 #  - 'profile::letsencrypt'
 
 ##
