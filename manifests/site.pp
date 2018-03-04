@@ -47,10 +47,17 @@ Vcsrepo {
   provider => 'git',
 }
 
-# TODO This needs fixing and to be local
+file { '/var/lib/puppet/clientbucket/':
+  ensure   => 'directory',
+  group    => 'root',
+  mode     => '0700',
+  owner    => 'root',
+  type     => 'directory',
+}
+
 filebucket { 'main':
-  server => 'puppet.local',
-  path   => false,
+  path   => '/var/lib/puppet/clientbucket/',
+  require => File['/var/lib/puppet/clientbucket/'],
 }
 
 # DEFAULT NODE
