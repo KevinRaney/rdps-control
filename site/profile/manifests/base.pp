@@ -48,6 +48,13 @@ class profile::base {
     minute  => '*/5',
   }
 
+  file_line { 'crontab_path':
+    ensure => 'present',
+    path   => '/etc/crontab',
+    line   => 'PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin',
+    match  => '^PATH=',
+  }
+  
   package { $packages:
     ensure => 'installed',
   }
