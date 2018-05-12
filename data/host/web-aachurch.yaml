@@ -5,7 +5,7 @@ classes:
   - 'profile::ssh'
   - 'profile::sudoers'
   - 'profile::puppet'
-  - 'wordpress::instance'
+  - 'wordpress'
 
 wordpress::instance::db_name: 'wp_aachurch'
 wordpress::instance::db_user: 'wp_aachurch'
