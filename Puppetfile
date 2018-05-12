@@ -18,6 +18,7 @@ mod 'saz/timezone',             '3.5.0'
 mod 'camptocamp/openssl',       '1.10.0'
 mod 'puppet/archive',           '2.0.0'
 mod 'hunner-wordpress',         '1.0.0'
+mod 'puppetlabs-mysql',         '5.3.0'
 
 #mod 'zleslie/pkgng',            '1.2.0'
 mod 'pkgng',
