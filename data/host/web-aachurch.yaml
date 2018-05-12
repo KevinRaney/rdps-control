@@ -7,7 +7,7 @@ classes:
   - 'profile::puppet'
   - 'wordpress'
 
-wordpress::instance::db_name: 'wp_aachurch'
-wordpress::instance::db_user: 'wp_aachurch'
-wordpress::instance::install_dir: '/var/www/aachurch'
-wordpress::instance::manage_wp_content: true
+wordpress::db_name: 'wp_aachurch'
+wordpress::db_user: 'wp_aachurch'
+wordpress::install_dir: '/var/www/aachurch'
+wordpress::manage_wp_content: true
