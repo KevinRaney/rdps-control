@@ -5,3 +5,9 @@ classes:
   - 'profile::ssh'
   - 'profile::sudoers'
   - 'profile::puppet'
+  - 'wordpress::instance'
+
+wordpress::instance::db_name: 'wp_aachurch'
+wordpress::instance::db_user: 'wp_aachurch'
+wordpress::instance::install_dir: '/var/www/aachurch'
+wordpress::instance::manage_wp_content: true
