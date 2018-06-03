@@ -6,8 +6,30 @@ classes:
   - 'profile::sudoers'
   - 'profile::puppet'
   - 'wordpress'
+  - 'mysql::server'
 
 wordpress::db_name: 'wp_aachurch'
 wordpress::db_user: 'wp_aachurch'
 wordpress::install_dir: '/var/www/aachurch'
 wordpress::manage_wp_content: true
+
+# Centos 7.3
+yumrepo:
+  'repo.mysql.com':
+    baseurl: "http://repo.mysql.com/yum/mysql-5.6-community/el/%{::operatingsystemmajrelease}/$basearch/"
+    descr: 'repo.mysql.com'
+    enabled: 1
+    gpgcheck: true
+    gpgkey: 'http://repo.mysql.com/RPM-GPG-KEY-mysql'
+
+mysql::client::package_name: "mysql-community-client" # required for proper MySQL installation
+mysql::server::package_name: "mysql-community-server" # required for proper MySQL installation
+mysql::server::package_ensure: 'installed' # do not specify version here, unfortunately yum fails with error that package is already installed
+mysql::server::manage_config_file: true
+mysql::server::service_name: 'mysqld' # required for puppet module
+mysql::server::override_options:
+  'mysqld':
+    'bind-address': '127.0.0.1'
+    'log-error': '/var/log/mysqld.log' # required for proper MySQL installation
+  'mysqld_safe':
+    'log-error': '/var/log/mysqld.log'  # required for proper MySQL installation
