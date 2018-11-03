@@ -33,7 +33,7 @@ Development example:
 cd
 git clone https://github.com/kevinraney/rdps-control.git control
 cd control
-git checkout -b develop origin/develop
+git checkout -b develop origin/develop --track
 bash bootstrap.sh
 ```
 
