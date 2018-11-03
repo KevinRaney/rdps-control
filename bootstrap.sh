@@ -8,7 +8,9 @@ if [ $os == 'FreeBSD' ]; then
   /usr/sbin/pkg install -y rubygem-r10k
 else
   rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
-  yum install -y puppet-agent
+  yum install centos-release-scl
+  yum install -y puppet-agent centos-release-scl
+  yum install -y rh-ruby23
   echo "Symlinking Puppet binaries to /usr/local/bin..."
   ln -s /opt/puppetlabs/bin/facter /usr/local/bin/facter
   ln -s /opt/puppetlabs/bin/puppet /usr/local/bin/puppet
