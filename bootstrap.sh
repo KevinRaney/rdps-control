@@ -8,7 +8,6 @@ if [ $os == 'FreeBSD' ]; then
   /usr/sbin/pkg install -y rubygem-r10k
 else
   rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
-  yum install centos-release-scl
   yum install -y puppet-agent centos-release-scl
   yum install -y rh-ruby23
   scl enable rh-ruby23 bash
