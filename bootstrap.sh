@@ -8,9 +8,15 @@ if [ $os == 'FreeBSD' ]; then
   /usr/sbin/pkg install -y rubygem-r10k
 else
   rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
-  yum install -y puppet-agent centos-release-scl
-  yum install -y rh-ruby23
-  scl enable rh-ruby23 bash
+  yum install -y puppet-agent rh-ruby23
+  echo "Enabling Ruby 2.3
+  tee /etc/profile.d/rh-ruby23.sh <<EOF
+#!/bin/bash
+ 
+source /opt/rh/rh-ruby23/enable
+export X_SCLS="`scl enable rh-ruby23 'echo $X_SCLS'`"
+EOF
+  source /etc/profile.d/rh-ruby.sh
   echo "Symlinking Puppet binaries to /usr/local/bin..."
   ln -s /opt/puppetlabs/bin/facter /usr/local/bin/facter
   ln -s /opt/puppetlabs/bin/puppet /usr/local/bin/puppet
