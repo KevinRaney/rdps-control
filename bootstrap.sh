@@ -11,6 +11,7 @@ else
   yum install centos-release-scl
   yum install -y puppet-agent centos-release-scl
   yum install -y rh-ruby23
+  scl enable rh-ruby23 bash
   echo "Symlinking Puppet binaries to /usr/local/bin..."
   ln -s /opt/puppetlabs/bin/facter /usr/local/bin/facter
   ln -s /opt/puppetlabs/bin/puppet /usr/local/bin/puppet
