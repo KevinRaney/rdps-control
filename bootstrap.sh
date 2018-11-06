@@ -9,9 +9,9 @@ if [ $os == 'FreeBSD' ]; then
 else
   rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
   yum-config-manager --enable rhel-server-rhscl-7-rpms
-  yum install -y puppet-agent rh-ruby23
+  yum install -y puppet-agent centos-release-scl rh-ruby23
   echo "Enabling Ruby 2.3"
-  cp rh-ruby23.sh /etc/profile.d/.
+  cp ~/control/rh-ruby23.sh /etc/profile.d/rh-ruby23.sh
   source /etc/profile.d/rh-ruby.sh
   echo "Symlinking Puppet binaries to /usr/local/bin..."
   ln -s /opt/puppetlabs/bin/facter /usr/local/bin/facter
