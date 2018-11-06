@@ -12,7 +12,7 @@ else
   yum install -y puppet-agent centos-release-scl rh-ruby23
   echo "Enabling Ruby 2.3"
   cp ~/control/rh-ruby23.sh /etc/profile.d/rh-ruby23.sh
-  source /etc/profile.d/rh-ruby.sh
+  source /etc/profile.d/rh-ruby23.sh
   echo "Symlinking Puppet binaries to /usr/local/bin..."
   ln -s /opt/puppetlabs/bin/facter /usr/local/bin/facter
   ln -s /opt/puppetlabs/bin/puppet /usr/local/bin/puppet
